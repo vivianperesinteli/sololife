@@ -80,61 +80,68 @@ Como **jovem universitária com rotina agitada**, quero **registrar anotações 
 
 ![📜 Modelagem Física com Schema do Banco de Dados - Scripts SQL]
 
+-- Tabela de usuários
 CREATE TABLE users (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(100),
-  email VARCHAR(100) UNIQUE,
-  password VARCHAR(100)
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100)    NOT NULL,
+  email VARCHAR(100)   NOT NULL UNIQUE,
+  password VARCHAR(100) NOT NULL
 );
 
+-- Tabela de eventos pessoais
 CREATE TABLE events (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  user_id INT,
-  title VARCHAR(100),
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  title VARCHAR(100)    NOT NULL,
   description TEXT,
-  date DATE,
-  time TIME,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  event_date DATE       NOT NULL,
+  event_time TIME,
+  created_at TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE item_lists (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  user_id INT,
-  item_name VARCHAR(100),
-  quantity INT,
-  category VARCHAR(50),
-  status VARCHAR(20),
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
+-- Tabela de afazeres domésticos
 CREATE TABLE tasks (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  user_id INT,
-  title VARCHAR(100),
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  title VARCHAR(100)    NOT NULL,
   description TEXT,
-  date DATE,
-  time TIME,
-  status VARCHAR(20),
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  task_date DATE        NOT NULL,
+  task_time TIME,
+  status VARCHAR(20)    NOT NULL DEFAULT 'pendente',
+  created_at TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
+-- Tabela de itens de compras / lista de compras
+CREATE TABLE shopping_items (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  item_name VARCHAR(100) NOT NULL,
+  quantity INTEGER      NOT NULL DEFAULT 1,
+  category VARCHAR(50),
+  status VARCHAR(20)    NOT NULL DEFAULT 'pendente',
+  created_at TIMESTAMP  NOT NULL DEFAULT NOW()
+);
+
+-- Tabela de anotações livres
 CREATE TABLE notes (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  user_id INT,
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   title VARCHAR(100),
   content TEXT,
   category VARCHAR(50),
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  created_at TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
+-- Tabela de planejamento de refeições
 CREATE TABLE meal_plans (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  user_id INT,
-  date DATE,
-  meal_type VARCHAR(50),
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  plan_date DATE        NOT NULL,
+  meal_type VARCHAR(50) NOT NULL,  -- ex.: café-da-manhã, almoço, jantar
   description TEXT,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  created_at TIMESTAMP  NOT NULL DEFAULT NOW()
 );
+
 
 
 ### 3.1.1 BD e Models (Semana 5)
