@@ -79,6 +79,7 @@ Como **jovem universitária com rotina agitada**, quero **registrar anotações 
 
 
 ![📜 Modelagem Física com Schema do Banco de Dados - Scripts SQL]
+
 CREATE TABLE users (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(100),
