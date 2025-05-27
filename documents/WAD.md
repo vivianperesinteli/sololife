@@ -7,7 +7,7 @@
 
 #### Autor do projeto
 
-Vivian de Assis Peres
+**Autor:** [Vivian de Assis Peres](https://www.linkedin.com/in/vivianperesinteli/)
 
 ## Sumário
 
