@@ -143,7 +143,6 @@ CREATE TABLE meal_plans (
 );
 
 
-
 ### 3.1.1 BD e Models (Semana 5)
 *Descreva aqui os Models implementados no sistema web*
 
