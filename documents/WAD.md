@@ -78,7 +78,7 @@ Como **jovem universitária com rotina agitada**, quero **registrar anotações 
 *Fonte: Produzido pelo autor do projeto por meio do Supabase (2025).
 
 
-![📜 Modelagem Física com Schema do Banco de Dados - Scripts SQL]
+## ![📜 Modelagem Física com Schema do Banco de Dados - Scripts SQL]
 
 ```
 CREATE TABLE users (
