@@ -81,7 +81,6 @@ Como **jovem universitária com rotina agitada**, quero **registrar anotações 
 ![📜 Modelagem Física com Schema do Banco de Dados - Scripts SQL]
 
 ```
--- Tabela de usuários
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100)    NOT NULL,
@@ -89,7 +88,6 @@ CREATE TABLE users (
   password VARCHAR(100) NOT NULL
 );
 
--- Tabela de eventos pessoais
 CREATE TABLE events (
   id SERIAL PRIMARY KEY,
   user_id INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -100,7 +98,7 @@ CREATE TABLE events (
   created_at TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
--- Tabela de afazeres domésticos
+
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   user_id INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -112,7 +110,6 @@ CREATE TABLE tasks (
   created_at TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
--- Tabela de itens de compras / lista de compras
 CREATE TABLE shopping_items (
   id SERIAL PRIMARY KEY,
   user_id INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -123,7 +120,7 @@ CREATE TABLE shopping_items (
   created_at TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
--- Tabela de anotações livres
+
 CREATE TABLE notes (
   id SERIAL PRIMARY KEY,
   user_id INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -133,7 +130,7 @@ CREATE TABLE notes (
   created_at TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
--- Tabela de planejamento de refeições
+
 CREATE TABLE meal_plans (
   id SERIAL PRIMARY KEY,
   user_id INTEGER       NOT NULL REFERENCES users(id) ON DELETE CASCADE,
