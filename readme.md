@@ -179,5 +179,5 @@ Acesse a aplicação via `http://localhost:3000`.
 
 ## Documentação das Rotas e Funcionalidades
 
-Todas as rotas e endpoints estão documentados no arquivo `documentos/wad.md` para facilitar o desenvolvimento e manutenção.
+Todas as rotas e endpoints estão documentados no arquivo `documents/wad.md` para facilitar o desenvolvimento e manutenção.
 
