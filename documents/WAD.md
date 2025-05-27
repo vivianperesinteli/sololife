@@ -80,6 +80,7 @@ Como **jovem universitária com rotina agitada**, quero **registrar anotações 
 
 ![📜 Modelagem Física com Schema do Banco de Dados - Scripts SQL]
 
+```
 -- Tabela de usuários
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -141,7 +142,7 @@ CREATE TABLE meal_plans (
   description TEXT,
   created_at TIMESTAMP  NOT NULL DEFAULT NOW()
 );
-
+```
 
 ### 3.1.1 BD e Models (Semana 5)
 *Descreva aqui os Models implementados no sistema web*
