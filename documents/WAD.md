@@ -142,11 +142,87 @@ CREATE TABLE meal_plans (
 ```
 
 ### 3.1.1 BD e Models (Semana 5)
-*Descreva aqui os Models implementados no sistema web*
+O sistema SoloLife utiliza o padrão MVC, onde os **Models** representam as entidades principais do banco de dados e são responsáveis pela interação com os dados persistidos. Abaixo estão os Models implementados no sistema web, baseados na modelagem relacional apresentada:
+
+#### User (Usuário)
+Representa os usuários cadastrados na plataforma.  
+**Atributos:**  
+- `id`: Identificador único do usuário  
+- `name`: Nome do usuário  
+- `email`: E-mail (único)  
+- `password`: Senha (armazenada de forma segura)
+
+#### Task (Tarefa)
+Modela as tarefas domésticas e pessoais do usuário.  
+**Atributos:**  
+- `id`: Identificador da tarefa  
+- `user_id`: Referência ao usuário  
+- `title`: Título da tarefa  
+- `description`: Descrição detalhada  
+- `task_date`: Data da tarefa  
+- `task_time`: Horário da tarefa  
+- `status`: Status (ex: pendente, concluída)  
+- `created_at`: Data de criação
+
+#### Event (Evento)
+Registra eventos e compromissos do usuário.  
+**Atributos:**  
+- `id`: Identificador do evento  
+- `user_id`: Referência ao usuário  
+- `title`: Título do evento  
+- `description`: Descrição  
+- `event_date`: Data  
+- `event_time`: Horário  
+- `created_at`: Data de criação
+
+#### ShoppingItem (Item de Compra)
+Gerencia itens da lista de compras do usuário.  
+**Atributos:**  
+- `id`: Identificador do item  
+- `user_id`: Referência ao usuário  
+- `item_name`: Nome do item  
+- `quantity`: Quantidade  
+- `category`: Categoria do item  
+- `status`: Status (pendente, comprado)  
+- `created_at`: Data de criação
+
+#### Note (Nota)
+Permite ao usuário registrar anotações pessoais.  
+**Atributos:**  
+- `id`: Identificador da nota  
+- `user_id`: Referência ao usuário  
+- `title`: Título  
+- `content`: Conteúdo  
+- `category`: Categoria  
+- `created_at`: Data de criação
+
+#### MealPlan (Plano de Refeição)
+Organiza o planejamento de refeições do usuário.  
+**Atributos:**  
+- `id`: Identificador do plano  
+- `user_id`: Referência ao usuário  
+- `plan_date`: Data do plano  
+- `meal_type`: Tipo de refeição (ex: café-da-manhã, almoço, jantar)  
+- `description`: Descrição  
+- `created_at`: Data de criação
+
+Cada Model é implementado como uma classe (ou schema, dependendo do ORM utilizado, como Sequelize ou Mongoose), contendo métodos para criação, leitura, atualização e exclusão (CRUD) dos registros. Eles garantem a integridade dos dados e facilitam a comunicação entre a aplicação e o banco de dados.
 
 ### 3.2. Arquitetura (Semana 5)
 
-*Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário.*
+O projeto Sololife adota uma arquitetura baseada no padrão MVC (Model-View-Controller), que organiza a aplicação em três camadas principais, favorecendo a separação de responsabilidades e facilitando a manutenção e expansão do sistema.
+
+Views: responsáveis por exibir as interfaces visuais ao usuário, contendo cabeçalho, formulários, tabelas e rodapé para cada funcionalidade da aplicação, como cadastro de eventos, tarefas, listas de compras, anotações e planos de refeição.
+
+Controllers: atuam como intermediários entre as Views e os Models, recebendo as requisições do usuário, processando os dados e definindo qual View será exibida, além de chamar os Models quando necessário para realizar operações no banco de dados.
+
+Models: responsáveis por estruturar os dados e mapear as tabelas do banco PostgreSQL, definindo atributos e relações para as entidades User, Event, Task, ShoppingItem, Note e MealPlan.
+
+Essa arquitetura garante organização, escalabilidade e facilita a implementação de novas funcionalidades, mantendo as regras de negócio centralizadas nos Controllers e Models, enquanto a camada de Views permanece focada na experiência do usuário.
+
+![📊 Arquitetura MVC](../assets/modelagem_BD.png/)
+*Fonte: Produzido pelo autor do projeto por meio do Supabase (2025).
+
 
 **Instruções para criação do diagrama de arquitetura**  
 - **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
